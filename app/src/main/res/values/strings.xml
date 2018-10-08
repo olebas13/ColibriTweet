@@ -8,6 +8,8 @@
     <string name="search_hint">Search</string>
     <string name="not_enough_symbols_msg">Please enter a least one symbol</string>
     <string name="loading_error_msg">Error during loading info</string>
+    <string name="search_button">Search</string>
+    <string name="search_edit_text_hint">Input name</string>
 
     <string name="fa_map_maker">\uf041</string>
     <string name="fa_heart_o">\uf08a</string>
