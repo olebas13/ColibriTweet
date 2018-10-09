@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHolder> {
 
     private static final String TWITTER_RESPONSE_FORMAT = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
@@ -57,7 +59,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
 
     class TweetViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView userImageView;
+        private CircleImageView userImageView;
         private TextView nameTextView;
         private TextView nickTextView;
         private TextView creationDateTextView;
@@ -68,7 +70,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
 
         public TweetViewHolder(View itemView) {
             super(itemView);
-            userImageView = (ImageView) itemView.findViewById(R.id.profile_image_view);
+            userImageView = (CircleImageView) itemView.findViewById(R.id.profile_image_view);
             nameTextView = (TextView) itemView.findViewById(R.id.author_name_text_view);
             nickTextView = (TextView) itemView.findViewById(R.id.author_nick_text_view);
             creationDateTextView = (TextView) itemView.findViewById(R.id.creation_date_text_view);

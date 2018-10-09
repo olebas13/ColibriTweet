@@ -1,4 +1,4 @@
-package com.olebas.colibritweet;
+package com.olebas.colibritweet.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.olebas.colibritweet.R;
 import com.olebas.colibritweet.adapter.TweetAdapter;
 import com.olebas.colibritweet.pojo.Tweet;
 import com.olebas.colibritweet.pojo.User;
