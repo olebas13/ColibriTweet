@@ -19,6 +19,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHolder> {
 
+    private OnUserClickListener onUserClickListener;
+
+    public UsersAdapter(OnUserClickListener onUserClickListener) {
+        this.onUserClickListener = onUserClickListener;
+    }
+
     private List<User> userList = new ArrayList<>();
 
     @NonNull
@@ -59,6 +65,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
             userImageView = (CircleImageView) itemView.findViewById(R.id.profile_image_view);
             nameTextView = (TextView) itemView.findViewById(R.id.user_name_text_view);
             nickTextView = (TextView) itemView.findViewById(R.id.user_nick_text_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    User user = userList.get(getLayoutPosition());
+                    onUserClickListener.onUserClick(user);
+                }
+            });
         }
 
         public void bind(User user) {
@@ -66,5 +80,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
             nickTextView.setText(user.getNick());
             Picasso.get().load(user.getImgUrl()).into(userImageView);
         }
+    }
+
+    public interface OnUserClickListener {
+        void onUserClick(User user);
     }
 }
