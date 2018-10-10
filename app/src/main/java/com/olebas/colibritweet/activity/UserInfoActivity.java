@@ -1,9 +1,13 @@
 package com.olebas.colibritweet.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.olebas.colibritweet.R;
@@ -19,6 +23,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserInfoActivity extends AppCompatActivity {
 
+    public static final String USER_ID = "user_id";
+
     private CircleImageView userImageView;
     private TextView nameTextView;
     private TextView nickTextView;
@@ -27,6 +33,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private TextView followingCountTextView;
     private TextView followersCountTextView;
     private RecyclerView tweetsRecyclerView;
+    private Toolbar toolbar;
 
     private TweetAdapter tweetAdapter;
 
@@ -42,10 +49,28 @@ public class UserInfoActivity extends AppCompatActivity {
         locationTextView = (TextView) findViewById(R.id.user_location_text_view);
         followingCountTextView = (TextView) findViewById(R.id.following_count_text_view);
         followersCountTextView = (TextView) findViewById(R.id.followers_count_text_view);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
         loadUserInfo();
         initRecyclerView();
         loadTweets();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_info_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+            Intent intent = new Intent(this, SearchUserActivity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
     private void loadTweets() {
@@ -80,7 +105,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private User getUser() {
         return new User(
                 1L,
-                "http://images5.fanpop.com/image/photos/30900000/Joey-s-evil-smile-oggy-and-the-cockroaches-30928993-477-357.jpg",
+                "http://www.mostvideo.org/data/big/2oggy_3.jpg",
                 "Oleg Nevoyt",
                 "@olebas13",
                 "Sample Description",
@@ -102,6 +127,8 @@ public class UserInfoActivity extends AppCompatActivity {
 
         String followersCount = String.valueOf(user.getFollowersCount());
         followersCountTextView.setText(followersCount);
+
+        getSupportActionBar().setTitle(user.getName());
     }
 
 }
